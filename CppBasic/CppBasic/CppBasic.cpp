@@ -1,11 +1,53 @@
-#include <iostream> // F12로 선언을 확인할 수 있다.
+#include <iostream> //  F12로 선언을 확인할 수 있다.
 #include "Test.h"
-
+#include <vector>
 
 using namespace std;    // std 네임스페이스를 기본적으로 사용한다고 표시
+const int WIDTH = 5;
+const int HEIGHT = 5;
+
+enum Direction { UP = 1, DOWN, LEFT, RIGHT };
+enum Cell { EMPTY, WALL, GOAL, PLAYER };
+
+void printMaze(const vector<vector<Cell>>& maze, int playerX, int playerY) {
+	for (int y = 0; y < HEIGHT; ++y) {
+		for (int x = 0; x < WIDTH; ++x) {
+			if (x == playerX && y == playerY)
+				cout << "P ";
+			else if (maze[y][x] == WALL)
+				cout << "# ";
+			else if (maze[y][x] == GOAL)
+				cout << "G ";
+			else
+				cout << ". ";
+		}
+		cout << endl;
+	}
+}
+
+bool movePlayer(int& playerX, int& playerY, Direction direction, const vector<vector<Cell>>& maze) {
+	int newX = playerX;
+	int newY = playerY;
+	switch (direction) {
+	case UP: newY--; break;
+	case DOWN: newY++; break;
+	case LEFT: newX--; break;
+	case RIGHT: newX++; break;
+	}
+	if (newX < 0 || newX >= WIDTH || newY < 0 || newY >= HEIGHT || maze[newY][newX] == WALL)
+		return false;
+
+	playerX = newX;
+	playerY = newY;
+	return true;
+}
+
+
+void TestFunction(int, float); // 함수의 선언 : 리턴값의 타입, 함수 이름, 파라미터의 타입과 이름(0개 이상 가능)
 
 int main()  // main 함수(엔트리포인트)
 {
+	
 	Test day;
 	// day.Test_1219_InputOutput();
 	// day.Test_1219_DataType();
@@ -13,71 +55,82 @@ int main()  // main 함수(엔트리포인트)
 	// day.Test_1220_Assignment();
 	// day.Test_1220_Comparison();
 	// day.Test_1220_Logical();
+	// day.Test_1220_Bitwise();	
+	// day.Test_1220_ControlStatement();
+	// day.Test_1220_SlotMachine();
+	// day.Test_1220_RPS();
+	// day.Test_1220_WeekendHomework();
+	// 포인터 : 메모리 주소를 저장하는 변수
+	int a = 10;
+	int* pAddress = nullptr;
+	pAddress = &a; // & : 주소 연산자 &로 a변수의 주소를 가져오기
+
+	int b = *pAddress; // 간접참조연산자 * Address 주소에 들어있는 데이터를 int타입으로 가져오는 것
+
+	int array[5] = { 1,3,5,7,9 };
+
+	pAddress = array;
+	// pAddress + 1; array[1]; 같은 동작	
+	//*(pAdress + 5) = 30;	// 범위를 벗어나서 접근
+	// 같은 종류의 데이터타입이 연속적으로 저장되어 있다.(빠르게 각 요소에 접근할 수 있다.)
+	int array1[5];
+	array1[0] = 1;
+	array1[1] = 10;
+	array1[2] = 7;
+	array1[3] = 5;
+	array1[4] = 20;
+
+	int array2[5] = { 1, 3, 5, 7, 9 };
+	//array2[5] = 10; // 크기는 무조건 고정이다.(삽입/삭제가 어렵다)
+
+	int* array3 = array1;
+
+	int array4[4][3] = { // 배열은 뒤에서부터 해석(3개짜리가 4개 있다.)
+		{1, 2, 3},
+		{4, 5, 6},
+		{7, 8, 9},
+		{10, 11, 12}
+	};
+
+	for (int i = 0; i < 5; i++)
+	{
+		printf("%d\n", array2[i]);
+	}
+
+	for (int num : array2)
+	{
+		printf("%d\n", num);
+	}
+}
+
+	void TestFunction(int number1, float number2) // 함수의 정의
+	{
+		// 함수의 바디, 코드 블럭
+
+		// 함수가 실행할 기능들 구현
+
+		return; // void는 return이 있어도 되고 없어도 된다.
+	}
+
+	int TestFunction2(int number1, float number2) // 함수의 정의
+	{
+		if (number1 > 1)
+			return 1;
+		return number1 + number2; // 함수의 종료지점
+
+		printf("Hello"); // return 이후에 있는 코드(이 줄 포함)는 실행되지 않는다.
+	}
+	int data = Add(1, 3);
+	int numberplus(int a, int b)
+	{
+		return a + b;
+	}
+	float numberplus(float c, float d)
+	{
+		return c + d;
+	}
+    
 	
-	// 비트 연산자 : 비트에 대한 연산
-	// & : and. 양변의 숫자의 자리수별로 둘다 1이면 1, 아니면 0
-	//  b_0010
-	//  b_0111
-	// &b_0010
-
-	int i = 2;		// 0000 0000 0000 0000 0000 0000 0000 0010
-	int j = 7;		// 0000 0000 0000 0000 0000 0000 0000 0111
-	int k = i & j;	// k = 2
-
-	// | : or. 양변의 숫자의 자리수별로 하나라도 1이면 1, 둘다 0이면 0
-	k = i | j;		// k = 7
-
-	// ~ : not
-	k = ~i;			// 1111 1111 1111 1111 1111 1111 1111 1101 // k의 결과
-
-	// ^ : xor(exclusive or). 다르면 1
-	k = i ^ j;		// 0000 0000 0000 0000 0000 0000 0000 0101
-
-	// << : 왼쪽 쉬프트
-	k = i << 2;		// 0000 0000 0000 0000 0000 0000 0000 1000
-	k = ~i << 2;	// 1111 1111 1111 1111 1111 1111 1111 0100
-
-	// >> : 오른쪽 쉬프트
-	k = i >> 2;		// 0000 0000 0000 0000 0000 0000 0000 0000
-	int end;
-
-	bool data;		// 1바이트로 참 거짓 중 하나만 저장
-	int weaponData = 0;
-	// 0000 0000 0000 0000 0000 0000 0000 0000
-	// 비트마스크
-	unsigned int sw = 0b0001; // 첫번째 : 칼		// 0001
-	unsigned int ax = 0b0010; // 두번째 : 도끼	// 0010
-	unsigned int sp = 0b0100; // 세번째 : 창		// 0100
-	unsigned int bo = 0b1000; // 네번째 : 활		// 1000
-	
-	const unsigned char Sword = 1;	// 1 << 0;
-	const unsigned char Axe = 2;	// 1 << 1;
-	const unsigned char Spear = 4;	// 1 << 2;
-	const unsigned char Bow = 8;	// 1 << 3;
-	// 내 캐릭터가 칼과 도끼를 사용할 수 있다. : 0011
-	weaponData = Sword | Axe;
-	
-	// 무기 종류별 비트마스크와 weaponData의 & 결과로 판단할 수 있다.
-	bool weaponAvailable = (weaponData & Sword) != 0;		// Sword를 사용할 수 있으면 true아니면 false
-	weaponAvailable = (weaponData & Sword) == Sword;		// 위와 같은 코드
-	
-	weaponAvailable = (weaponData & Bow) != Bow;
-	if (Sword && weaponData) {
-		cout << "sword use" << sw << endl;
-	};
-	if (Axe && weaponData) {
-		cout << "axe use" << ax << endl;
-	};
-	if (Spear && weaponData) {
-		cout << "spear use" << sp << endl;
-	};
-	if (Bow && weaponData) {
-		cout << "bow use" << bo << endl;
-	};
-	if(0 && weaponData){
-		cout << "no use" << endl;
-	};
-
 	
 }
 

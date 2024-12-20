@@ -1,4 +1,5 @@
 #include "Test.h"
+#include <algorithm>
 #include <iostream>
 
 // 정의부
@@ -177,4 +178,443 @@ void Test::Test_1220_Logical()
 	// ! : not. true는 false로 false는 true로 변경.
 	result != true;
 	result != false;
+}
+void Test::Test_1220_Bitwise()
+{
+	// 비트 연산자 : 비트에 대한 연산
+	// & : and. 양변의 숫자의 자리수별로 둘다 1이면 1, 아니면 0
+	//  b_0010
+	//  b_0111
+	// &b_0010
+
+	int i = 2;		// 0000 0000 0000 0000 0000 0000 0000 0010
+	int j = 7;		// 0000 0000 0000 0000 0000 0000 0000 0111
+	int k = i & j;	// k = 2
+
+	// | : or. 양변의 숫자의 자리수별로 하나라도 1이면 1, 둘다 0이면 0
+	k = i | j;		// k = 7
+
+	// ~ : not
+	k = ~i;			// 1111 1111 1111 1111 1111 1111 1111 1101 // k의 결과
+
+	// ^ : xor(exclusive or). 다르면 1
+	k = i ^ j;		// 0000 0000 0000 0000 0000 0000 0000 0101
+
+	// << : 왼쪽 쉬프트
+	k = i << 2;		// 0000 0000 0000 0000 0000 0000 0000 1000
+	k = ~i << 2;	// 1111 1111 1111 1111 1111 1111 1111 0100
+
+	// >> : 오른쪽 쉬프트
+	k = i >> 2;		// 0000 0000 0000 0000 0000 0000 0000 0000
+	int end;
+
+	bool data;		// 1바이트로 참 거짓 중 하나만 저장
+	int weaponData = 0;
+	// 0000 0000 0000 0000 0000 0000 0000 0000
+	// 비트마스크
+	unsigned int sw = 0b0001; // 첫번째 : 칼		// 0001
+	unsigned int ax = 0b0010; // 두번째 : 도끼	// 0010
+	unsigned int sp = 0b0100; // 세번째 : 창		// 0100
+	unsigned int bo = 0b1000; // 네번째 : 활		// 1000
+
+	const unsigned char Sword = 1;	// 1 << 0;
+	const unsigned char Axe = 2;	// 1 << 1;
+	const unsigned char Spear = 4;	// 1 << 2;
+	const unsigned char Bow = 8;	// 1 << 3;
+	// 내 캐릭터가 칼과 도끼를 사용할 수 있다. : 0011
+	weaponData = Sword | Axe;
+
+	// 무기 종류별 비트마스크와 weaponData의 & 결과로 판단할 수 있다.
+	bool weaponAvailable = (weaponData & Sword) != 0;		// Sword를 사용할 수 있으면 true아니면 false
+	weaponAvailable = (weaponData & Sword) == Sword;		// 위와 같은 코드
+
+	/*weaponAvailable = (weaponData & Bow) != Bow;
+	if (Sword && weaponData) {
+		cout << "sword use" << sw << endl;
+	};
+	if (Axe && weaponData) {
+		cout << "axe use" << ax << endl;
+	};
+	if (Spear && weaponData) {
+		cout << "spear use" << sp << endl;
+	};
+	if (Bow && weaponData) {
+		cout << "bow use" << bo << endl;
+	};
+	if(0 && weaponData){
+		cout << "no use" << endl;
+	};*/
+}
+void Test::Test_1220_ControlStatement()
+{
+	// 제어문(Control statement)
+	int a = 10;
+
+	if (a > 5)
+	{
+		// 조건이 true일 때 실행
+	}
+	else
+	{
+		// 조건이 false일 때 실행
+	}
+
+	if (a < 5)
+	{
+		// a가 5보다 작으면 실행
+	}
+
+	if (a < 5)
+	{
+		// a가 5보다 작을 때 실행
+	}
+	else if (a < 10)
+	{
+		// a가 5보다 크거나 같고 10보다 작을 때 실행
+	}
+
+	switch (a)
+	{
+	case 1:
+		printf("1\n");
+		break;
+	case 2:
+		printf("2\n");
+		break;
+	case 3:
+		printf("3\n");
+		break;
+	default:
+		printf("Default\n");
+		break;
+	}
+
+	// 반복문(Loop)
+	int i = 0;
+	while (i < 11) // 조건을 확인하고 조건이 참이면 {} 안의 코드를 수행. 총 11번 실행
+	{
+		i++;
+	}
+
+	i = 0;
+	while (true)	// 무한 루프의 경우 루프를 탈출하는 조건을 반드시 설정해야 한다. 총 11번 실행
+	{
+		i++;
+		if (i > 10)
+		{
+			break;
+		}
+	}
+
+	i = 0;
+	do
+	{
+		i++;
+	} while (i < 11);	// 일단 {} 사이의 코드를 한 번 실행하고 조건을 확인한 후 조건이 참이면 다시 실행. 총 10번 실행
+
+	for (int j = 0; j < 10; j++)	// j<10 조건을 확인하고 조건이 참이면 {}사이 코드 실행. 총 10번 실행
+	{
+		if (j % 2 == 0) // 짝수는 처리하지 않고 스킵
+			continue;	// 이 이후의 코드는 실행하지 않고 loop의 시작점으로 돌아가기
+
+		printf("%d is odd", j);	// 홀수는 홀수라고 출력하고 짝수는 아무것도 안함
+	}
+	printf("Input number : ");
+	cin >> a;
+	if (a % 2 == 0)
+	{
+		printf("%d is even.\n", a);
+	}
+	else
+	{
+		printf("%d is odd.\n", a);
+	}
+	int number = 0, odd = 0, even = 0;
+	std::cin >> number;
+	if ((number % 2) == 0)
+	{
+		number = even;
+		printf("even number %d.\n", even);
+	}
+	else {
+		number = odd;
+		printf("odd number %d.\n", odd);
+	}
+}
+void Test::Test_1220_SlotMachine()
+{
+	// 슬롯머신
+	// 처음에 돈을 걸고
+	// 랜덤으로 숫자를 3개 뽑아서 셋다 같은 숫자가 나오면 2배로 돌려주기
+	// 다시 처음으로
+
+	int money = 100000;	// 게임 시작 시 보유 금액
+	const int WinRate = 100; // 당첨 시 배율
+	while (true) // 게임을 재시작하기 위한 루프
+	{
+		std::srand(std::time(0)); // 랜덤 숫자 생성을 위한 시드 설정
+	
+		// 현재 베팅한 돈
+		int bet = 0;
+		
+		cout << "베팅 금액을 입력하세요(" << money << "원 보유 중): ";
+		cin >> bet;	// 입력 받고
+		if (bet > 0 && bet <= money)
+		{
+			// 베팅 금액이 0보다 크고 가지고 있는 돈보다 작거나 같을 때
+			cout << "슬롯머신을 시작합니다!" << endl;
+			int slot1 = std::rand() % 10;
+			int slot2 = std::rand() % 10;
+			int slot3 = std::rand() % 10;
+			
+			// 테스트용으로 7로 고정
+			// slot1 = slot2 = slot3 = 7;
+
+			cout << "첫 번째 숫자: " << slot1 << endl;
+			cout << "두 번째 숫자: " << slot2 << endl;
+			cout << "세 번째 숫자: " << slot3 << endl;
+
+			money -= bet;	// 베팅한 만큼 돈을 뺀다.
+			
+			if (slot1 == slot2 && slot2 == slot3)
+			{
+				int win = bet * WinRate;
+				money += win;	// 당첨 금액을 추가한다
+				cout << "축하합니다! 당첨 금액: " << win << "원" << endl;
+			}
+			else
+			{
+				cout << "안타깝지만, 다시 도전해 보세요! 남은 금액: " << money << "원" << endl;
+		}
+	} else { cout << "베팅 금액이 잘못되었습니다. 다시 입력하세요." << endl; continue;
+	// 잘못된 금액 입력 시 재입력 받도록
+	continue }
+	if (money <= 0) {
+		cout << "돈이 모두 소진되었습니다. 게임을 종료합니다." << endl;
+		break;
+	} char playAgain;
+	cout << "다시 플레이하시겠습니까? (y/n): ";
+	cin >> playAgain;
+	if (playAgain != 'y') { 
+		break; // 사용자가 다시 플레이하지 않으면 루프 종료
+	}
+	} return 0;
+}
+void Test::Test_1220_RPS()
+{
+	std::srand(std::time(0));
+
+	// 가위바위보
+	// 3선승
+
+	const int Rock = 1;
+	const int Paper = 2;
+	const int Scissors = 3;
+
+	int myWinCount = 0;
+	int enemyWinCount = 0;
+
+	while (myWinCount < 3 && enemyWinCount < 3)
+	{
+		int mySelection = 0;
+		string selectText = "";
+
+		while (mySelection < 1 || mySelection > 3)
+		{
+			printf("Select Rock(1) Paper(2) Scissors(3) : ");
+			cin >> mySelection;		// 나의 선택
+
+			switch (mySelection)
+			{
+			case 1:
+				selectText = "Rock";
+				break;
+			case 2:
+				selectText = "Paper";
+				break;
+			case 3:
+				selectText = "Scissors";
+				break;
+			default:
+				break;
+			}
+		}
+
+		printf("Your select is [%s]\n", selectText.c_str());	// 나의 선택 출력
+		int enemySelection = (rand() % 3) + 1;
+		switch (enemySelection)
+		{
+		case 1:
+			selectText = "Rock";
+			break;
+		case 2:
+			selectText = "Paper";
+			break;
+		case 3:
+			selectText = "Scissors";
+			break;
+		}
+		printf("Enemy select is [%s]\n", selectText.c_str());	// 나의 선택 출력
+
+		switch (mySelection)
+		{
+		case 1:
+			switch (enemySelection)
+			{
+			case 1:
+				// 무승부
+				printf("Draw\n");
+				break;
+			case 2:
+				// 적의 승리
+				enemyWinCount++;
+				printf("ENEMY WIN\n");
+				break;
+			case 3:
+				// 나의 승리
+				myWinCount++;
+				printf("YOU WIN\n");
+				break;
+			}
+			break;
+		case 2:
+			switch (enemySelection)
+			{
+			case 1:
+				// 나의 승리
+				myWinCount++;
+				printf("YOU WIN\n");
+				break;
+			case 2:
+				// 무승부
+				printf("Draw\n");
+				break;
+			case 3:
+				// 적의 승리
+				enemyWinCount++;
+				printf("ENEMY WIN\n");
+				break;
+			}
+			break;
+		case 3:
+			switch (enemySelection)
+			{
+			case 1:
+				// 적의 승리
+				enemyWinCount++;
+				printf("ENEMY WIN\n");
+				break;
+			case 2:
+				// 나의 승리
+				myWinCount++;
+				printf("YOU WIN\n");
+				break;
+			case 3:
+				// 무승부
+				printf("Draw\n");
+				break;
+			}
+			break;
+		}
+
+		printf("You : [%d], Enemy : [%d]\n", myWinCount, enemyWinCount);
+		mySelection = 0;
+	}
+}
+
+void Test::Test_1220_Template()
+{
+	int data = Add(1, 3);
+	float data2 = Add(1.5f, 3.3f);
+
+	int data3 = TemplateAdd<int>(10, 30);
+	float data4 = TemplateAdd<float>(10.5f, 2.6f);
+
+	// 이름 : Clamp
+	// 파라미터 : value, min, max
+	// 기능 : value가 min보다 작으면 min을 반환, max보다 크면 max를 반환, 아니면 value를 반환하는 함수
+	// 템플릿 함수로 구현해야 한다.
+
+	int data5 = Clamp<int>(10, 0, 100);	// 10
+	int data6 = Clamp<int>(110, 0, 100);	// 10
+}
+
+int array4[4][3] = {	// 배열은 뒤에서부터 해석(3개짜리가 4개 있다.)
+	{1,2,3},
+	{4,5,6},
+	{7,8,9},
+	{10,11,12}
+};
+
+for (int i = 0; i < 5; i++)
+{
+	printf("%d\n", array2[i]);
+}
+
+for (int num : array2)
+{
+	printf("%d\n", num);
+}
+}
+
+void TestFunction() // 함수의 정의
+{
+	// 함수의 바디, 코드 블럭
+	
+	// 함수가 실행할 기능들 구현
+	
+	return; // void는 return이 있어도 되고 없어도 된다.
+}
+int TestFunction2(int number1, float number2) // 함수의 정의
+{
+	if (number1 > 1)
+		return 1;
+	return number1 + number2; // 함수의 종료지점
+	printf("Hello"); // return 이후에 있는 코드(이 줄 포함)는 실행되지 않는다.
+}
+int add(int num1, int num2)
+{
+	return num1 + num2;
+}
+float Add(float num1, float num2)
+{
+	return num1 + num2;
+}
+
+template<typename T>
+T TemplateAdd(T num1, T num2)
+{
+	return num1 + num2;
+}
+void Test::Test_1220_WeekendHomework()
+{
+	vector<vector<Cell>> maze = {
+			{ EMPTY, EMPTY, WALL,  EMPTY, GOAL  },
+			{ WALL,  EMPTY, WALL,  EMPTY, WALL  },
+			{ EMPTY, EMPTY, EMPTY, EMPTY, EMPTY },
+			{ WALL,  WALL,  WALL,  WALL,  EMPTY },
+			{ PLAYER,EMPTY, EMPTY, EMPTY, EMPTY }
+	};
+
+	int playerX = 0;
+	int playerY = 4;
+
+	while (maze[playerY][playerX] != GOAL) {
+		printMaze(maze, playerX, playerY);
+		cout << "이동 방향을 입력하세요 (상: 1, 하: 2, 좌: 3, 우: 4): ";
+		int input;
+		cin >> input;
+
+		if (input < 1 || input > 4) {
+			cout << "잘못된 입력입니다. 다시 시도하세요." << endl;
+			continue;
+		}
+
+		if (!movePlayer(playerX, playerY, static_cast<Direction>(input), maze)) {
+			cout << "이동할 수 없습니다. 다시 시도하세요." << endl;
+		}
+	}
+
+	cout << "축하합니다! 골인지점에 도착했습니다!" << endl;
+	return 0;
 }
