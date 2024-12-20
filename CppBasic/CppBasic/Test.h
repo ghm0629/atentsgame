@@ -13,4 +13,7 @@ public:
 	void Test_1219_InputOutput();
 	void Test_1219_DataType();
 	void Test_1219_ArithmeticOperator();
+	void Test_1220_Assignment();
+	void Test_1220_Comparison();
+	void Test_1220_Logical();
 };

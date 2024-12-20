@@ -91,5 +91,90 @@ void Test::Test_1219_ArithmeticOperator()
 	b = 3;
 	c = a % b;	// 나머지를 구하는 연산
 
+	// % : modulo. 나머지 구하기
+	c = a - (b * (a / b));
+
+	// 4GHz = 4000MHz = 4000000KHz = 4000000000 Hz
+	
 	int end = 0;
+}
+void Test::Test_1220_Assignment()
+{
+	// 대입연산자 : 변수에 값을 넣어주는 연산자
+	int a = 10; // a라는 변수에 10이라는 값을 대입함
+	int b = a;
+	b += a; // b = b + a;
+	b -= a; // b = b - a;
+	b *= a; // b = b * a;
+	b /= a; // b = b / a;
+
+	// 증감연산자
+	a = 10;
+	a++;		// a = a + 1;	값을 사용하고 증가
+	++a;		// a = a + 1;	값을 사용하지 않고 증가
+	a--;		// a = a - 1;
+
+	b = a++;	// b에 a를 먼저 대입하고 a를 1증가
+	b = ++a;	// a에 먼저 1증가시키고 b에 대입
+
+	a++;
+	b = a;
+
+	// 예전에는 성능 차이 for(int i=0;i<10;i++) < for(int i=0;i<10;++i) 그러나 지금은 컴파일러가 최적화하기 때문에 상관없음
+}
+void Test::Test_1220_Comparison()
+{
+	// 비교 연산자(크다, 작다, 같다, 다르다)
+	int a = 10;
+	int b = 10;
+
+	bool result = false;
+
+	// == : 왼쪽에 있는 값과 오른쪽에 있는 값이 같으면 true, 다르면 false를 돌려주는 연산자
+	result = (a == b); // result = true;
+
+	b = 20;
+	result = (a == b);		// result = false;
+
+	// != : 왼쪽에 있는 값과 오른쪽에 있는 값이 다르면 true, 같으면 false를 돌려주는 연산자
+	result = (a != b);		// result = true;
+	b = 10;
+	result = (a != b);		// result = false;
+
+	a = 10;
+	b = 20;
+
+	result = (a > b);		// result = false;
+	result = (a < b);		// result = true;
+
+	b = 10;
+	result = (a >= b);		// result = true; 실제 코드 작성 시
+	result = (a <= b);		// result = true; 이상, 이하는 피하라 연산 두 번 하기 때문에(평균 두 배 이상) 큰 건 아니지만 아껴서 나쁠 건 없다.
+}
+void Test::Test_1220_Logical()
+{
+	// 논리 연산자 : 참, 거짓을 판단하는 연산자
+	// && : and. 왼쪽에 있는 값과 오른쪽에 있는 값이 모두 true일 때 true이다.
+
+	bool result;
+	result = true && true;		// result = true
+	result = true && false;		// result = false
+	result = false && true;		// result = false
+	result = false && false;	// result = false
+
+	result = true && ture && ture && false; // result = false
+
+	// || : or. 왼쪽에 있는 값이나 오른쪽에 있는 값 중 하나만 true면 true이다
+	result = true || true;		// result = true
+	result = true || false;		// result = true
+	result = false || true;		// result = true
+	result = false || false;	// result = true
+
+	result = false || false || ture || false; // result = true
+
+	// 계산이 빨리 끝나는 항목을 항상 앞쪽에 넣는 것이 좋다.
+
+	// ! : not. true는 false로 false는 true로 변경.
+	result != true;
+	result != false;
 }
