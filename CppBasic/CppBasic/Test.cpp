@@ -1,6 +1,7 @@
-#include "Test.h"
 #include <algorithm>
 #include <iostream>
+#include "Test.h"
+#include "Animal.h"
 
 // 정의부
 using namespace std;
@@ -163,7 +164,7 @@ void Test::Test_1220_Logical()
 	result = false && true;		// result = false
 	result = false && false;	// result = false
 
-	result = true && ture && ture && false; // result = false
+	result = true && true && true && false; // result = false
 
 	// || : or. 왼쪽에 있는 값이나 오른쪽에 있는 값 중 하나만 true면 true이다
 	result = true || true;		// result = true
@@ -171,7 +172,7 @@ void Test::Test_1220_Logical()
 	result = false || true;		// result = true
 	result = false || false;	// result = true
 
-	result = false || false || ture || false; // result = true
+	result = false || false || true || false; // result = true
 
 	// 계산이 빨리 끝나는 항목을 항상 앞쪽에 넣는 것이 좋다.
 
@@ -221,6 +222,7 @@ void Test::Test_1220_Bitwise()
 	const unsigned char Axe = 2;	// 1 << 1;
 	const unsigned char Spear = 4;	// 1 << 2;
 	const unsigned char Bow = 8;	// 1 << 3;
+
 	// 내 캐릭터가 칼과 도끼를 사용할 수 있다. : 0011
 	weaponData = Sword | Axe;
 
@@ -273,6 +275,29 @@ void Test::Test_1220_ControlStatement()
 		// a가 5보다 크거나 같고 10보다 작을 때 실행
 	}
 
+	printf("Input number : ");
+	cin >> a;
+	if (a % 2 == 0)
+	{
+		printf("%d is even.\n", a);
+	}
+	else
+	{
+		printf("%d is odd.\n", a);
+	}
+
+	int number = 0, odd = 0, even = 0;
+	std::cin >> number;
+	if ((number % 2) == 0)
+	{
+		number = even;
+		printf("even number %d.\n", even);
+	}
+	else {
+		number = odd;
+		printf("odd number %d.\n", odd);
+	}
+
 	switch (a)
 	{
 	case 1:
@@ -319,27 +344,7 @@ void Test::Test_1220_ControlStatement()
 
 		printf("%d is odd", j);	// 홀수는 홀수라고 출력하고 짝수는 아무것도 안함
 	}
-	printf("Input number : ");
-	cin >> a;
-	if (a % 2 == 0)
-	{
-		printf("%d is even.\n", a);
-	}
-	else
-	{
-		printf("%d is odd.\n", a);
-	}
-	int number = 0, odd = 0, even = 0;
-	std::cin >> number;
-	if ((number % 2) == 0)
-	{
-		number = even;
-		printf("even number %d.\n", even);
-	}
-	else {
-		number = odd;
-		printf("odd number %d.\n", odd);
-	}
+	
 }
 void Test::Test_1220_SlotMachine()
 {
@@ -388,7 +393,7 @@ void Test::Test_1220_SlotMachine()
 		}
 	} else { cout << "베팅 금액이 잘못되었습니다. 다시 입력하세요." << endl; continue;
 	// 잘못된 금액 입력 시 재입력 받도록
-	continue }
+	continue; }
 	if (money <= 0) {
 		cout << "돈이 모두 소진되었습니다. 게임을 종료합니다." << endl;
 		break;
@@ -398,7 +403,7 @@ void Test::Test_1220_SlotMachine()
 	if (playAgain != 'y') { 
 		break; // 사용자가 다시 플레이하지 않으면 루프 종료
 	}
-	} return 0;
+	}
 }
 void Test::Test_1220_RPS()
 {
@@ -454,7 +459,7 @@ void Test::Test_1220_RPS()
 			selectText = "Scissors";
 			break;
 		}
-		printf("Enemy select is [%s]\n", selectText.c_str());	// 나의 선택 출력
+		printf("Enemy select is [%s]\n", selectText.c_str());	// 적의 선택 출력
 
 		switch (mySelection)
 		{
@@ -535,26 +540,567 @@ void Test::Test_1220_Template()
 	// 기능 : value가 min보다 작으면 min을 반환, max보다 크면 max를 반환, 아니면 value를 반환하는 함수
 	// 템플릿 함수로 구현해야 한다.
 
-	int data5 = Clamp<int>(10, 0, 100);	// 10
-	int data6 = Clamp<int>(110, 0, 100);	// 10
+	//int data5 = Clamp<int>(10, 0, 100);	// 10
+	//int data6 = Clamp<int>(110, 0, 100);	// 10
 }
 
-int array4[4][3] = {	// 배열은 뒤에서부터 해석(3개짜리가 4개 있다.)
-	{1,2,3},
-	{4,5,6},
-	{7,8,9},
-	{10,11,12}
-};
-
-for (int i = 0; i < 5; i++)
+void Test::Test_1220_Array()
 {
-	printf("%d\n", array2[i]);
+	// 같은 종류의 데이터타입이 연속적으로 저장되어 있다.(빠르게 각 요소에 접근할 수 있다.)
+	int array1[5];
+	array1[0] = 1;
+	array1[1] = 10;
+	array1[2] = 7;
+	array1[3] = 5;
+	array1[4] = 20;
+
+	int array2[5] = { 1, 3, 5, 7, 9 };
+	//array2[5] = 10;	// 크기는 무조건 고정이다.(삽입/삭제가 어렵다)
+
+	int* array3 = array1;
+
+	int array4[4][3] = {	// 배열은 뒤에서부터 해석(3개짜리가 4개 있다.)
+		{1,2,3},
+		{4,5,6},
+		{7,8,9},
+		{10,11,12}
+	};
+
+	for (int i = 0; i < 5; i++)
+	{
+		printf("%d\n", array2[i]);
+	}
+
+	for (int num : array2)
+	{
+		printf("%d\n", num);
+	}
 }
 
-for (int num : array2)
+void Test::Test_1223_Pointer()
 {
-	printf("%d\n", num);
+	// 포인터 : 메모리 주소를 저장하는 변수
+	int a = 10;
+	int* pAddress = nullptr;
+	pAddress = &a;	// 주소연산자 &로 a변수의 주소를 가져오기
+
+	int b = *pAddress;	// 간접참조연산자 *로 pAddress 주소에 들어있는 데이터를 int타입으로 가져오는 것
+
+	int size = sizeof(int*);
+
+	int array[5] = { 1,3,5,7,9 };
+	int array2[4][3] = {	// 배열은 뒤에서부터 해석(3개짜리가 4개 있다.)
+		{1,2,3},
+		{4,5,6},
+		{7,8,9},
+		{10,11,12}
+	};
+
+	pAddress = array;
+	pAddress += 1;	// int의 byte 사이즈만큼 증가
+	pAddress = &array2[0][0];	// 배열의 시작지점의 주소를 pAddress에 주기
+	// 디버그로 볼때 조사식에 아래처럼 설정해야 구조를 확인하기 쉽다
+	// (int(*)[3])pAddress,4
+
+	// pAddress + 1;	array[1]; 같은 동작
+	// *(pAddress + 5) = 30;	// 범위를 벗어나서 접근
+
+	int* mem = (int*)malloc(sizeof(int) * 5);	// C스타일의 메모리 할당. int 5개 크기로 메모리를 할당받음
+	free(mem);			// C스타일의 메모리 해제
+	mem = nullptr;		// 메모리가 해제되었다는 표시용
+
+	mem = new int;		// C++ 스타일의 메모리 할당
+	delete mem;			// C++ 스타일의 메모리 해제
+	mem = new int[5];
+	delete[] mem;		// 배열일 경우는 delete도 배열로
+	mem = nullptr;
+
+	mem = new int[5] {2, 4, 6, 8, 10};
+
+	TestFuction3(array, 5);
+	TestFuction3(mem, 5);
+
+	delete[] mem;
+	mem = nullptr;
 }
+
+void Test::Test_1223_Reference()
+{
+	// 참조(Reference)
+	int number = 10;
+	int& ref = number;	// 참조는 반드시 참조하는 대상이 초기화 되어야 한다.
+	ref = 5;			// number도 같이 수정된다.
+
+	//int& ref2 = 10;		// 임시 값은 참조대상이 될 수 없다.
+
+	// int&&
+	// std::forward;
+	// std::move;
+
+	TestFuction4(number);
+}
+
+void Test::Test_1223_String()
+{
+	// 캐스팅
+	int i = 3.14f;		// 암시적 캐스팅
+	int j = (int)3.14f;	// 명시적 캐스팅
+
+	int k = static_cast<int>(3.14f);	// C++ 스타일. 컴파일타임에 캐스팅 수행. 
+	// dynamic_cast	// 상속구조에서 런타임에 안전하게 데이터 캐스팅을 수행.
+	// const_cast	// const또는 volatile 속성을 추가하거나 제거할 때 사용. 주로 상수성 제거용
+	// reinterpret_cast // 포인터 타입간에 강제 변환용(매우 위험). C스타일 캐스팅에 가까움
+
+	const char* str = "abcde";						// 문자열의 마지막은 '\0'으로 끝난다.
+	char* str2 = const_cast<char*>("abcde");
+	char str3[10] = "abcde";
+	char* str4 = new char[10];
+	memset(str4, 0, sizeof(char) * 10);				// 특정 포인터가 가리키는 메모리 위치에서 크기만큼 특정 값을 채우는 함수	
+	strcpy_s(str4, 10, "abcde");
+	printf("str : %s\n", str2);
+	char* str5 = (char*)malloc(sizeof(char) * 10);
+	strcpy_s(str5, 10, "abcde");
+
+	free(str5);
+	str5 = nullptr;
+	delete[] str4;	// 먼저 할당한 것이 나중에 해제되어야 한다.
+	str4 = nullptr;
+
+	//char str6[5] = "abcde";	// \0를 포함해 6개짜리 문자열이다.
+
+	int size = strlen(str);		// 문자열의 길이를 리턴하는 함수
+	printf("str : %s, length : %d\n", str, size);
+
+	strcpy_s(str3, "Hello");	// 소스문자열을 목표 주소에 복사
+	printf("str3 : %s\n", str3);
+
+	strcat_s(str3, " W\n");		// 소스문자열을 목표 주소에 있는 문자열 마지막에 덧붙인다.
+	printf("str3 : %s\n", str3);
+
+	int result = strcmp("abc", "abc");	// 같으면 리턴이 0, 
+	printf("Result : %d\n", result);
+	result = strcmp("abc", "ab");		// 1
+	printf("Result : %d\n", result);
+	result = strcmp("ab", "abc");		// -1
+	printf("Result : %d\n", result);
+
+	// 실습
+	// int MyStrLen(char*); 함수 만들기 : strlen과 같은 기능을 한다.
+	// int MyStrCmp(char*, char*); 함수 만들기 : strcmp과 같은 기능을 한다.
+
+	//"1321,55,87,57,786" 파싱
+}
+
+void Test::Test_1223_StringPractice()
+{
+	char str[16] = "12345";
+	int length = MyStrLen(str);
+	printf("Length : %d\n", length);
+
+	char str2[16] = "12345";
+	char str3[16] = "12345";
+	int result1 = MyStrCmp(str2, str3);
+	int result2 = strcmp(str2, str3);
+	printf("Cmp result : %d, %d\n", result1, result2);	// 0
+
+	char str4[16] = "12345";
+	char str5[16] = "12347";
+	result1 = MyStrCmp(str4, str5);
+	result2 = strcmp(str4, str5);
+	printf("Cmp result : %d, %d\n", result1, result2);		// -1
+
+	char str6[16] = "12347";
+	char str7[16] = "12345";
+	result1 = MyStrCmp(str6, str7);
+	result2 = strcmp(str6, str7);
+	printf("Cmp result : %d, %d\n", result1, result2);		// -1
+
+	char str8[16] = "1234";
+	char str9[16] = "12345";
+	result1 = MyStrCmp(str8, str9);
+	result2 = strcmp(str8, str9);
+	printf("Cmp result : %d, %d\n", result1, result2);		// -1
+
+	char str10[16] = "12345";
+	char str11[16] = "1234";
+	result1 = MyStrCmp(str10, str11);
+	result2 = strcmp(str10, str11);
+	printf("Cmp result : %d, %d\n", result1, result2);		// 1
+
+
+	// "1321,55,87,57,786" 파싱
+	char raw[32] = "1321,55,87,57,786";
+	int parseResult[5];
+	memset(parseResult, 0, sizeof(int) * 5);
+	MyParser(raw, parseResult);
+
+	/*int pow = MyPow(10, 3);
+	pow = MyPow(10, 1);
+	pow = MyPow(10, 0);
+
+	int num = MyAtoI(const_cast<char*>("1234"));
+	num = MyAtoI(const_cast<char*>("14"));
+	num = MyAtoI(const_cast<char*>("1"));
+	num = MyAtoI(const_cast<char*>("12358"));*/
+}
+
+void Test::Test_1223_Structure()
+{
+	//MyStruct st = { 1, 10.0f, 5, 20 };
+	//st.x = 10;
+	//st.y = 20;
+	//float result = TestStruct1(st);
+	//result = TestStruct2(&st);
+	//result = TestStruct3(st);
+	//st.x;
+
+	//MyStruct* pSt = new MyStruct(1, 10.0f, 5, 20.0f);
+	//pSt->damage = 100;
+
+	Vector2D a = { 1,2 };
+	Vector2D b = { 5,3 };
+	Vector2D c = a + b;
+	c = a - b;
+	c = a * 2;
+	c = a / 2;
+}
+
+void Test::Test_1224_Class()
+{
+	// 클래스 : 객체의 데이터와 동작을 표현한 것
+	MyClass a;
+	a.height = 180;
+
+	Animal* animal = new Animal();
+	animal->Cry();
+
+	/*Dog* dog = new Dog();
+	dog->Cry();*/
+	Animal* dog = new Dog();
+	dog->Cry();		// Cry가 일반 함수라면 현재 자신의 타입을 기준으로 함수가 실행됨
+	// Cry가 가상 함수라면 자신의 인스턴스 기준으로 함수가 실행됨
+
+	Animal* cat = new Cat();
+	cat->Cry();
+
+	// 가상함수 
+	// 가상함수가 있는 클래스는 가상 테이블(Virtual Table)이 추가된다.
+	// 가상테이블에는 가상함수(virtual)들의 주소가 기록되어 있다.
+	// 가상함수들이 호출될때는 가상테이블에 기록된 함수의 주소로 점프한 다음 실행이 된다.
+
+	delete cat;
+	cat = nullptr;
+	delete dog;
+	dog = nullptr;
+
+	delete animal;
+	animal = nullptr;
+}
+
+void Test::Test_1224_Enum()
+{
+	int type = Plain;
+	for (int i = 0; i < NumOfLandType; i++)
+	{
+		int j = None;
+	}
+
+	//int a = static_cast<int>(ELandType::Plain);
+}
+void Test::Test_1224_List()
+{
+	LinkedList list;
+	list.Add(10);
+	list.Add(20);
+	list.Add(30);
+	list.Print();
+
+	list.Insert(25, 2);
+	list.Print();
+	list.Insert(5, 0);
+	list.Print();
+	list.Insert(100, 100);
+	list.Print();
+	list.Insert(33, 1);
+	list.Print();
+
+	list.Remove(33);
+	list.Print();
+	list.Remove(100);
+	list.Print();
+	list.Remove(5);
+	list.Print();
+
+	list.RemoveAt(1);
+	list.Print();
+	list.RemoveAt(10);
+	list.Print();
+
+	list.Clear();
+	list.Print();
+
+	list.Insert(5, 0);
+	list.Print();
+}
+
+void Test::Test_1224_BST()
+{
+	BinarySearchTree tree;
+	tree.Clear();
+
+	tree.Insert(3, -1);
+	tree.Insert(1, -1);
+	tree.Insert(2, -1);
+	tree.Insert(5, -1);
+	tree.Insert(4, -1);
+	tree.PrintInOrder();
+	tree.Delete(3);
+	tree.PrintInOrder();
+	tree.Delete(2);
+	tree.PrintInOrder();
+	tree.Delete(5);
+	tree.PrintInOrder();
+	TreeNode* node = tree.Search(1);
+	node = tree.Search(5);
+
+
+	tree.Clear();
+}
+
+void Test::Test_1224_STL()
+{
+	// STL(Standard Template Library)
+	// vector : 동적 배열 컨테이더(크기를 자유롭게 늘릴 수 있다)
+	std::vector<int> numbers = { 1,2,3,4,5 };
+	numbers.reserve(20);
+	int num = numbers[0];		// num = 1
+	int size = numbers.size();	// 배열의 크기
+	numbers.push_back(6);
+	numbers.pop_back();
+	int capacity = numbers.capacity();
+	numbers.push_back(6);
+	numbers.push_back(7);
+	numbers.push_back(8);
+	numbers.push_back(9);
+	numbers.push_back(10);
+
+	/*for (int i = 0; i < numbers.size(); i++)
+	{
+		numbers[i];
+	}*/
+
+	for (auto iter = numbers.begin(); iter != numbers.end(); iter++)
+	{
+		int num = *iter;
+	}
+
+	for (auto iter = numbers.rbegin(); iter != numbers.rend(); iter++)
+	{
+
+	}
+
+	for (int& num : numbers)	// 참조로 받아오면 수정도 가능
+	{
+		num = num + 1;
+	}
+
+	// list : 이중 링크드 리스트
+	std::list<int> listNumbers = { 1,2,5,4,3 };
+	listNumbers.sort();
+	listNumbers.push_back(10);
+	listNumbers.push_front(0);
+
+	// map : 키-값 쌍을 저장하는 트리
+	std::map<int, float> mapData;
+	mapData[0] = 3.1f;
+	mapData[6] = 7.25f;
+
+	float test = mapData[0];
+	test = mapData[5];
+	auto findIter = mapData.find(6);
+	if (findIter != mapData.end())
+	{
+		// 키가 있다.
+	}
+	else
+	{
+		// 키가 없다.
+	}
+
+	std::map<std::string, int> mapName;
+	mapName["AAA"] = 10;
+	mapName["BBB"] = 50;
+
+	std::list<int>::iterator listIter = std::find(listNumbers.begin(), listNumbers.end(), 3);
+	std::vector<int>::iterator listIter2 = std::find(numbers.begin(), numbers.end(), 3);
+
+}
+
+void TestFunction(int number1, float number2)	// 함수의 정의
+{
+	// 함수의 바디, 코드 블럭
+
+	// 함수가 실행할 기능들 구현
+
+	return;	// void는 return이 있어도 되고 없어도 된다.
+}
+
+int TestFunction2(int number1, float number2)
+{
+	if (number1 > 1)
+		return 1;
+
+	return number1 + number2;	// 함수의 종료지점
+
+	printf("Hello");	// 이 줄은 절대 실행되지 않는다.
+}
+
+void TestFuction3(int* data, int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		printf("Pointer data %d : %d\n", i, data[i]);
+	}
+}
+
+void TestFuction4(int& data)
+{
+	printf("Referece data : %d", data);
+}
+
+int MyStrLen(char* str)
+{
+	int index = 0;
+	//while (str[index] != '\0')
+	while (*(str + index) != '\0')
+	{
+		index++;
+	}
+
+	return index;
+}
+
+int MyStrCmp(char* str1, char* str2)
+{
+	int result = 0;
+	int index = 0;
+	while (str1[index] != '\0' && str2[index] != '\0')		// !(str1[index] == '\0' || str2[index] == '\0')
+	{
+		if (str1[index] == str2[index])
+		{
+			index++;
+		}
+		else if (str1[index] > str2[index])
+		{
+			return 1;	// 위치의 글자가 다르다.
+		}
+		else if (str1[index] < str2[index])
+		{
+			return -1;	// 위치의 글자가 다르다.
+		}
+	}
+
+	if (str1[index] == '\0' && str2[index] == '\0')
+	{
+		result = 0;		// 글자의 자리수가 같다.
+	}
+	else if (str1[index] == '\0')
+	{
+		result = -1;	// 글자의 자리수가 다르다.
+	}
+	else if (str2[index] == '\0')
+	{
+		result = 1;		// 글자의 자리수가 다르다.
+	}
+
+	return result;
+}
+
+/*
+int strcmp(const char *str1, const char *str2) {
+	while (*str1 && (*str1 == *str2)) {
+		str1++;
+		str2++;
+	}
+	return *(unsigned char*)str1 - *(unsigned char*)str2;
+}
+*/
+
+void MyParser(char* source, int* out, int count)
+{
+	// "1321,55,87,57,786"
+	// "1321" "55" "87" "57" "786"	// 5개의 토큰으로 나누기
+	// 1321 55 87 57 786			// 토큰을 int로 변환
+	// 변환한 것을 out에 담고 종료
+
+	char* newStart = source;	// 토큰이 잘려지고 남은 부분(의 시작 주소)
+	char* find = nullptr;		// ','의 위치(주소)
+	int index = 0;				// count만큼 반복을 위한 변수 + out의 몇번째 인덱스인지
+	do
+	{
+		find = strchr(newStart, ',');	// ,가 있는 주소 찾기
+		int size = find - newStart;		// 글자의 자리수 확인
+
+		char number[8];
+		strncpy_s(number, newStart, size);	// 토큰 추출하기(글자로 된 숫자 뽑아내기)
+
+		out[index] = MyAtoI(number);		// 토큰을 int로 변환
+		newStart = find + 1;				// 새 시작위치 설정(,다음 위치)
+		index++;							// index 증가
+	} while (index < count && *find != '\0');	// index가 count 이상이거나 더 이상 ,가 없다면(find == '\0') 반복 중지
+}
+
+int MyAtoI(char* str)
+{
+	int sum = 0;
+	int length = strlen(str);	// str = "1234"
+	for (int i = 0; i < length; i++)
+	{
+		// (str[i] - 48) : 글자로 되어 있는 숫자를 int로 변경
+		// MyPow(10, length - 1 - i) : 몇번째 자리수인지(1000, 100, 10 등등)
+		sum += (str[i] - 48) * MyPow(10, length - 1 - i);
+	}
+	return sum;
+}
+
+int MyPow(int base, int exponent)
+{
+	int result = 1;
+	for (int i = 0; i < exponent; i++)
+	{
+		result *= base;
+	}
+
+	return result;
+}
+
+float TestStruct1(MyStruct st)
+{
+	st.x *= 2;
+	return st.x + st.y + st.damage + st.height;
+}
+
+float TestStruct2(MyStruct* st)
+{
+	st->x *= 2;
+	return st->x + st->y + st->damage + st->height;
+}
+
+float TestStruct3(MyStruct& st)
+{
+	st.x *= 2;
+	return st.x + st.y + st.damage + st.height;
+}
+
+
+int Add(int num1, int num2)
+{
+	return num1 + num2;
+}
+
+float Add(float num1, float num2)
+{
+	return num1 + num2;
 }
 
 void TestFunction() // 함수의 정의
@@ -572,49 +1118,41 @@ int TestFunction2(int number1, float number2) // 함수의 정의
 	return number1 + number2; // 함수의 종료지점
 	printf("Hello"); // return 이후에 있는 코드(이 줄 포함)는 실행되지 않는다.
 }
-int add(int num1, int num2)
-{
-	return num1 + num2;
-}
-float Add(float num1, float num2)
-{
-	return num1 + num2;
-}
 
 template<typename T>
 T TemplateAdd(T num1, T num2)
 {
 	return num1 + num2;
 }
-void Test::Test_1220_WeekendHomework()
-{
-	vector<vector<Cell>> maze = {
-			{ EMPTY, EMPTY, WALL,  EMPTY, GOAL  },
-			{ WALL,  EMPTY, WALL,  EMPTY, WALL  },
-			{ EMPTY, EMPTY, EMPTY, EMPTY, EMPTY },
-			{ WALL,  WALL,  WALL,  WALL,  EMPTY },
-			{ PLAYER,EMPTY, EMPTY, EMPTY, EMPTY }
-	};
-
-	int playerX = 0;
-	int playerY = 4;
-
-	while (maze[playerY][playerX] != GOAL) {
-		printMaze(maze, playerX, playerY);
-		cout << "이동 방향을 입력하세요 (상: 1, 하: 2, 좌: 3, 우: 4): ";
-		int input;
-		cin >> input;
-
-		if (input < 1 || input > 4) {
-			cout << "잘못된 입력입니다. 다시 시도하세요." << endl;
-			continue;
-		}
-
-		if (!movePlayer(playerX, playerY, static_cast<Direction>(input), maze)) {
-			cout << "이동할 수 없습니다. 다시 시도하세요." << endl;
-		}
-	}
-
-	cout << "축하합니다! 골인지점에 도착했습니다!" << endl;
-	return 0;
-}
+//void Test::Test_1220_WeekendHomework()
+//{
+//	vector<vector<Cell>> maze = {
+//			{ EMPTY, EMPTY, WALL,  EMPTY, GOAL  },
+//			{ WALL,  EMPTY, WALL,  EMPTY, WALL  },
+//			{ EMPTY, EMPTY, EMPTY, EMPTY, EMPTY },
+//			{ WALL,  WALL,  WALL,  WALL,  EMPTY },
+//			{ PLAYER,EMPTY, EMPTY, EMPTY, EMPTY }
+//	};
+//
+//	int playerX = 0;
+//	int playerY = 4;
+//
+//	while (maze[playerY][playerX] != GOAL) {
+//		printMaze(maze, playerX, playerY);
+//		cout << "이동 방향을 입력하세요 (상: 1, 하: 2, 좌: 3, 우: 4): ";
+//		int input;
+//		cin >> input;
+//
+//		if (input < 1 || input > 4) {
+//			cout << "잘못된 입력입니다. 다시 시도하세요." << endl;
+//			continue;
+//		}
+//
+//		if (!movePlayer(playerX, playerY, static_cast<Direction>(input), maze)) {
+//			cout << "이동할 수 없습니다. 다시 시도하세요." << endl;
+//		}
+//	}
+//
+//	cout << "축하합니다! 골인지점에 도착했습니다!" << endl;
+//	return 0;
+//}
