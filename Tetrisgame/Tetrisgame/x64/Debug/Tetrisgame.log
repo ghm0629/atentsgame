@@ -1,6 +1,12 @@
-﻿  GameManager.cpp
+﻿  ConsoleDoubleBuffer.cpp
+  DropBlock.cpp
+  GameManager.cpp
+C:\Users\Atents\Documents\GitHub\atentsgame\Tetrisgame\Tetrisgame\DropBlock.h(2,10): error C1083: 포함 파일을 열 수 없습니다. 'Tetromino.h': No such file or directory
+  (소스 파일 'DropBlock.cpp'을(를) 컴파일하는 중)
+  
   Input.cpp
   Main.cpp
-C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\Main.cpp(10,6): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
+C:\Users\Atents\Documents\GitHub\atentsgame\Tetrisgame\Tetrisgame\Main.cpp(10,6): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
+  Singleton.cpp
+  Test.cpp
   코드를 생성하고 있습니다...
-  Tetrisgame.vcxproj -> C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\x64\Debug\Tetrisgame.exe
