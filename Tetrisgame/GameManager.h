@@ -6,7 +6,6 @@
 #include "Input.h"
 #include "Stage.h"
 
-
 class GameManager : public Singleton<GameManager>
 {
 public:
@@ -15,7 +14,6 @@ public:
 	void Destroy();
 
 	inline float GetDeltaTime() const { return deltaTime; } // inline 함수 : 컴파일 타임에 코드 교체가 일어남
-
 
 	// 입력 시스템 함수 래핑
 	// 키를 눌렀을 때 실행될 함수 바인딩
@@ -40,6 +38,10 @@ public:
 	{
 		pInput->BindRelease(type, func, obj);
 	}
+
+#ifdef _TEST_MODE
+	inline void Test_Stage_7Bag() { pStage->Test_7Bag(); }
+#endif
 
 private:
 	GameManager() = default;

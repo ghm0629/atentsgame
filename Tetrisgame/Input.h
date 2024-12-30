@@ -41,7 +41,7 @@ public:
 
 private:
 	// 가상키의 종류
-	const int virtualKeys[static_cast<int>(KeyType::NUM_OF_KEYTYPE)]{ VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN, VK_SPACE, VK_ESCAPE };
+	const int virtualKeys[static_cast<int>(KeyType::NUM_OF_KEYTYPE)]{ VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN, VK_SPACE, VK_ESCAPE, VK_NUMPAD0 };
 	
 	// 특정키가 눌려있는지 표시
 	bool keyPressed[static_cast<int>(KeyType::NUM_OF_KEYTYPE)];

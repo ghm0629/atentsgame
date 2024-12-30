@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClInclude Include="common.h" />
     <ClInclude Include="ConsoleDoubleBuffer.h" />
+    <ClInclude Include="DropBlock.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Logger.h" />
@@ -139,6 +140,7 @@
     <ClInclude Include="MinoS.h" />
     <ClInclude Include="MinoT.h" />
     <ClInclude Include="MinoZ.h" />
+    <ClInclude Include="Random.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="System.h" />
@@ -147,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConsoleDoubleBuffer.cpp" />
+    <ClCompile Include="DropBlock.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -157,6 +160,7 @@
     <ClCompile Include="MinoS.cpp" />
     <ClCompile Include="MinoT.cpp" />
     <ClCompile Include="MinoZ.cpp" />
+    <ClCompile Include="Random.cpp" />
     <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="Test.cpp" />

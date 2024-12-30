@@ -1,5 +1,8 @@
 #pragma once
 #include <functional>
+#include "Logger.h"
+
+#define _TEST_MODE	1	// 테스트 코드 포함/제거용 디파인
 
 //테트리스에서 사용되는 키 종류(크기는 char 8비트 최대 256가지 표현)
 enum class KeyType : char
@@ -10,6 +13,7 @@ enum class KeyType : char
 	SoftDrop,		// 빠르게 떨어지게 하는 키
 	HardDrop,		// 바닥으로 즉시 떨어지게 하는 키
 	Esc,			// Esc키
+	Test,			// 테스트용
 	NUM_OF_KEYTYPE	// 키 종류가 몇 개인지 
 };
 

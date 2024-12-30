@@ -19,12 +19,15 @@ public:
 	// 반시계방향으로 회전
 	void ReverseSpin();
 
-	inline const CellType* GetData() const { return data[spinIndex]; }
-	inline const Position* GetMinos() const { return &minoPositions[spinIndex][0]; }
+	// 회전방향 초기화용
+	inline void Reset() { spinIndex = 0; }
 
+	//inline const CellType* GetData() const { return data[spinIndex]; }
+	inline const Position* GetMinos() const { return &minoPositions[spinIndex][0]; }
 	inline int GetWidth() const { return width; }
 	inline int GetHeight() const { return height; }
 
+	static constexpr int TetroCount = 4;
 protected:
 	// 총 회전 방향의 수
 	static constexpr int SpinCount = 4;
@@ -33,7 +36,7 @@ protected:
 	CellType** data = nullptr;
 
 	// 테트로미노를 이루는 블럭들의 위치들(4개) * 4방향
-	Position minoPositions[SpinCount][4];
+	Position minoPositions[SpinCount][TetroCount];
 
 	int width = 3;		// 기본적인 크기(3*3). 예외는 따로 처리(I, O)
 	int height = 3;

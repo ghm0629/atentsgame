@@ -2,12 +2,14 @@
 #include <Windows.h>
 #include <functional>
 #include <map>
+#include <random>
 #include "GameManager.h"
 #include "Test.h"
 #include "Logger.h"
 #include "Tetromino.h"
 #include "MinoI.h"
 #include "MinoJ.h"
+#include "Random.h"
 
 void Test::Test_Output()
 {
@@ -150,18 +152,52 @@ void Test::Test_Input_System()
 	GameManager::Get().BindReleaseInput(KeyType::Left, []() { Logger::Print("Left up");  });
     GameManager::Get().BindPressInput(KeyType::Spin, &Test::Test_Up, this);
 }
+
 void Test::Test_Tetromino()
 {
 	Tetromino* pMino = new MinoJ();
 	pMino->Initialize();
 
-	const CellType* pCellType = pMino->GetData();
+	//const CellType* pCellType = pMino->GetData();
+	const Position* pPositions = pMino->GetMinos();
+
+	pMino->Spin();
+
+	//pCellType = pMino->GetData();
+	pPositions = pMino->GetMinos();
+
+	pMino->Spin();
+
+	//pCellType = pMino->GetData();
+	pPositions = pMino->GetMinos();
+	pMino->Spin();
+
+	//const CellType* pCellType = pMino->GetData();
 	const Position* pOsitions = pMino->GetMinos();
 
 	pMino->Destroy();
 	delete pMino;
 	pMino = nullptr;
 }
+
+void Test::Test_Random()
+{
+	std::random_device rd;
+	std::mt19937 generator(rd());			// 난수 생성기를 만들기
+
+	std::uniform_real_distribution<float> dis(0.0f, 1.0f);	// 난수 분포 결정(실수값 float 0.0~1.0 사이)
+	float random = dis(generator);							// 랜덤한 숫자 하나 가져오기
+	//while (true)
+	//{
+	//	random = dis(generator);
+	//}
+
+	Random random1(10);
+	//Random random2 = 10;	// explicit로 막을 수 있다.
+
+	GameManager::Get().BindPressInput(KeyType::Test, &GameManager::Test_Stage_7Bag, &GameManager::Get());
+}
+
 void Test::Test_Up()
 {
 	Logger::Print("Up press\n");

@@ -1,4 +1,5 @@
 C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\ConsoleDoubleBuffer.cpp;C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\x64\Debug\ConsoleDoubleBuffer.obj
+C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\DropBlock.cpp;C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\x64\Debug\DropBlock.obj
 C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\GameManager.cpp;C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\x64\Debug\GameManager.obj
 C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\Input.cpp;C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\x64\Debug\Input.obj
 C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\Main.cpp;C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\x64\Debug\Main.obj
@@ -9,6 +10,7 @@ C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\MinoO.cpp;
 C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\MinoS.cpp;C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\x64\Debug\MinoS.obj
 C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\MinoT.cpp;C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\x64\Debug\MinoT.obj
 C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\MinoZ.cpp;C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\x64\Debug\MinoZ.obj
+C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\Random.cpp;C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\x64\Debug\Random.obj
 C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\Singleton.cpp;C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\x64\Debug\Singleton.obj
 C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\Stage.cpp;C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\x64\Debug\Stage.obj
 C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\Test.cpp;C:\Users\Atents\source\repos\ghm0629\atentsgame\Tetrisgame\Tetrisgame\x64\Debug\Test.obj

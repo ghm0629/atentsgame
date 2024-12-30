@@ -3,7 +3,6 @@
 
 void GameManager::Initialize()
 {
-
 	SetConsoleFont(L"MS Gothic", 16, 16);
 	
 	systems.reserve(4);
@@ -21,6 +20,14 @@ void GameManager::Initialize()
 			sys->Initialize();
 		}
 	}
+
+	// 드랍블록의 함수와 입력을 바인딩하기
+	DropBlock* pDropBlock = pStage->GetDropBlock();
+	pInput->BindPress(KeyType::Left, &DropBlock::MoveLeft, pDropBlock);
+	pInput->BindPress(KeyType::Right, &DropBlock::MoveLeft, pDropBlock);
+	pInput->BindPress(KeyType::Spin, &DropBlock::Spin, pDropBlock);
+	pInput->BindPress(KeyType::HardDrop, &DropBlock::HardDrop, pDropBlock);
+
 	lastTime = clock();
 }
 
