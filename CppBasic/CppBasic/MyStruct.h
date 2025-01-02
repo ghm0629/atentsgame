@@ -26,7 +26,7 @@ struct MyStruct
 		damage = val;
 	}
 	MyStruct(int x, float _y, int _height, int _damage)
-	{
+	{		
 		//x = x;
 		this->x = x;
 		y = _y;

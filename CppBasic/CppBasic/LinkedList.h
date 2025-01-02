@@ -28,4 +28,7 @@ private:
 
 	// 첫번째 노드의 위치
 	ListNode* head = nullptr;
+
+
 };
+

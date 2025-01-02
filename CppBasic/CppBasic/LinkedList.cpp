@@ -22,7 +22,7 @@ void LinkedList::Add(int data)
 }
 
 void LinkedList::Insert(int data, int position)
-{	
+{
 	// Data를 position번째에 추가(position이 전체길이를 벗어나면 마지막에 추가)
 	ListNode* node = new ListNode(data);
 	ListNode* target = head;		// position위치에 있는 노드
@@ -40,7 +40,7 @@ void LinkedList::Insert(int data, int position)
 		count++;
 		prev = target;
 		target = target->next;
-	}
+}
 	if (target == nullptr || target->next == nullptr) {
 		Add(data); // position이 전체 길이를 벗어나면 마지막에 추가
 	} else {
@@ -71,10 +71,10 @@ void LinkedList::Remove(int data){
 	int index = 0;
 
 	while (prev != nullptr && index < data - 1)		// 마지막 노드까지 반복
-	{
+{
 		prev = prev->next;
 		index++;
-	}
+}
 	if (prev != nullptr && prev->next != nullptr) {  // prev가 nullptr인지 확인
 		ListNode* target = prev->next;
 		prev->next = prev->next->next;
@@ -97,7 +97,7 @@ void LinkedList::RemoveAt(int position){
 	int count = 0;
 	
 	while (tail != nullptr && count < position - 1)		// target이 적절해질 때까지 진행
-	{
+{
 		tail = tail->next;
 		count++;
 	}
@@ -117,9 +117,9 @@ void LinkedList::RemoveAt(int position){
 void LinkedList::Clear(){
 	// 리스트의 모든 노드를 삭제
 	while (head != nullptr)
-	{
+{
 		RemoveAt(0);
-	}
+}
 }
 
 void LinkedList::Print(){

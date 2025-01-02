@@ -1,4 +1,4 @@
-#include <iostream> //  F12로 선언을 확인할 수 있다.
+#include <iostream> // F12로 선언을 확인할 수 있다.
 #include "Test.h"
 #include <vector>
 #include "Animal.h"
@@ -6,8 +6,6 @@
 #include "BinarySearchTree.h"
 #include <queue>
 using namespace std;    // std 네임스페이스를 기본적으로 사용한다고 표시
-const int WIDTH = 5;
-const int HEIGHT = 5;
 
 enum Direction { UP = 1, DOWN, LEFT, RIGHT };
 enum Cell { EMPTY, WALL, GOAL, PLAYER };
@@ -66,6 +64,23 @@ bool BFS(const Cell maze[HEIGHT][WIDTH], int startX, int startY, Point parent[HE
         for (int i = 0; i < 4; ++i) {
             int nx = p.x + dx[i];
             int ny = p.y + dy[i];
+int main()  // main 함수(엔트리포인트)
+{
+	Test day;
+	// day.Test_1219_InputOutput();
+	// day.Test_1219_DataType();
+	// day.Test_1219_ArithmeticOperator();
+	// day.Test_1220_Assignment();
+	// day.Test_1220_Comparison();
+	// day.Test_1220_Logical();
+	// day.Test_1220_ControlStatement();
+	// day.Test_1220_SlotMachine();
+	// day.Test_1220_RPS();	
+	// day.Test_1223_Pointer();
+	// day.Test_1223_Reference();
+	// day.Test_1223_String();
+	// day.Test_1223_StringPractice();
+	
 
             if (nx >= 0 && ny >= 0 && nx < WIDTH && ny < HEIGHT && !visited[ny][nx] && maze[ny][nx] != WALL) {
                 parent[ny][nx] = p;  // 부모 노드 설정

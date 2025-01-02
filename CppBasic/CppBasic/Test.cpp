@@ -97,33 +97,34 @@ void Test::Test_1219_ArithmeticOperator()
 	c = a - (b * (a / b));
 
 	// 4GHz = 4000MHz = 4000000KHz = 4000000000 Hz
-	
+
 	int end = 0;
 }
+
 void Test::Test_1220_Assignment()
 {
 	// 대입연산자 : 변수에 값을 넣어주는 연산자
-	int a = 10; // a라는 변수에 10이라는 값을 대입함
+	int a = 10;	// a라는 변수에 10이라는 값을 대입함
 	int b = a;
-	b += a; // b = b + a;
+	b += a;	// b = b + a;
 	b -= a; // b = b - a;
 	b *= a; // b = b * a;
-	b /= a; // b = b / a;
+	b /= a;	// b = b / a;
 
 	// 증감연산자
 	a = 10;
-	a++;		// a = a + 1;	값을 사용하고 증가
-	++a;		// a = a + 1;	값을 사용하지 않고 증가
+	a++;		// a = a + 1;	
+	++a;		// a = a + 1;
 	a--;		// a = a - 1;
 
 	b = a++;	// b에 a를 먼저 대입하고 a를 1증가
-	b = ++a;	// a에 먼저 1증가시키고 b에 대입
+	b = ++a;	// a를 먼저 1증가시키고 b에 대입
 
 	a++;
 	b = a;
 
-	// 예전에는 성능 차이 for(int i=0;i<10;i++) < for(int i=0;i<10;++i) 그러나 지금은 컴파일러가 최적화하기 때문에 상관없음
 }
+
 void Test::Test_1220_Comparison()
 {
 	// 비교 연산자(크다, 작다, 같다, 다르다)
@@ -133,7 +134,7 @@ void Test::Test_1220_Comparison()
 	bool result = false;
 
 	// == : 왼쪽에 있는 값과 오른쪽에 있는 값이 같으면 true, 다르면 false를 돌려주는 연산자
-	result = (a == b); // result = true;
+	result = (a == b);	// result = true;
 
 	b = 20;
 	result = (a == b);		// result = false;
@@ -150,13 +151,14 @@ void Test::Test_1220_Comparison()
 	result = (a < b);		// result = true;
 
 	b = 10;
-	result = (a >= b);		// result = true; 실제 코드 작성 시
-	result = (a <= b);		// result = true; 이상, 이하는 피하라 연산 두 번 하기 때문에(평균 두 배 이상) 큰 건 아니지만 아껴서 나쁠 건 없다.
+	result = (a >= b);		// result = true;
+	result = (a <= b);		// result = true;
 }
+
 void Test::Test_1220_Logical()
 {
 	// 논리 연산자 : 참, 거짓을 판단하는 연산자
-	// && : and. 왼쪽에 있는 값과 오른쪽에 있는 값이 모두 true일 때 true이다.
+	// && : and. 왼쪽에 있는 값과 오른쪽에 있는 값이 모두 true일때 true이다.
 
 	bool result;
 	result = true && true;		// result = true
@@ -168,56 +170,56 @@ void Test::Test_1220_Logical()
 
 	// || : or. 왼쪽에 있는 값이나 오른쪽에 있는 값 중 하나만 true면 true이다
 	result = true || true;		// result = true
-	result = true || false;		// result = true
+	result = true || false;	// result = true
 	result = false || true;		// result = true
-	result = false || false;	// result = true
+	result = false || false;	// result = false
 
 	result = false || false || true || false; // result = true
 
 	// 계산이 빨리 끝나는 항목을 항상 앞쪽에 넣는 것이 좋다.
 
-	// ! : not. true는 false로 false는 true로 변경.
-	result != true;
-	result != false;
+	// ! : not. true는 false로, false는 true로 변경.
+	result = true;
+	result = !result;	
 }
+
 void Test::Test_1220_Bitwise()
 {
 	// 비트 연산자 : 비트에 대한 연산
 	// & : and. 양변의 숫자의 자리수별로 둘다 1이면 1, 아니면 0
-	//  b_0010
-	//  b_0111
+	//	b_0010
+	//	b_0111
 	// &b_0010
 
-	int i = 2;		// 0000 0000 0000 0000 0000 0000 0000 0010
-	int j = 7;		// 0000 0000 0000 0000 0000 0000 0000 0111
+	int i = 2;		// 0000 0000 0000 0000 0000 0000 0000 0010 
+	int j = 7;		// 0000 0000 0000 0000 0000 0000 0000 0111 
 	int k = i & j;	// k = 2
 
-	// | : or. 양변의 숫자의 자리수별로 하나라도 1이면 1, 둘다 0이면 0
+	// | : or.  양변의 숫자의 자리수별로 하나라도 1이면 1, 둘다 0이면 0
 	k = i | j;		// k = 7
 
 	// ~ : not
 	k = ~i;			// 1111 1111 1111 1111 1111 1111 1111 1101 // k의 결과
 
-	// ^ : xor(exclusive or). 다르면 1
-	k = i ^ j;		// 0000 0000 0000 0000 0000 0000 0000 0101
+	// ^ : xor. 다르면 1
+	k = i ^ j;		// 0000 0000 0000 0000 0000 0000 0000 0101 
 
 	// << : 왼쪽 쉬프트
 	k = i << 2;		// 0000 0000 0000 0000 0000 0000 0000 1000
 	k = ~i << 2;	// 1111 1111 1111 1111 1111 1111 1111 0100
 
 	// >> : 오른쪽 쉬프트
-	k = i >> 2;		// 0000 0000 0000 0000 0000 0000 0000 0000
+	k = i >> 2;		// 0000 0000 0000 0000 0000 0000 0000 0000 
 	int end;
 
-	bool data;		// 1바이트로 참 거짓 중 하나만 저장
+	//bool data;		// 1바이트로 참 거짓 중 하나만 저장
 	int weaponData = 0;
-	// 0000 0000 0000 0000 0000 0000 0000 0000
 	// 비트마스크
-	unsigned int sw = 0b0001; // 첫번째 : 칼		// 0001
-	unsigned int ax = 0b0010; // 두번째 : 도끼	// 0010
-	unsigned int sp = 0b0100; // 세번째 : 창		// 0100
-	unsigned int bo = 0b1000; // 네번째 : 활		// 1000
-
+	// 0000 
+	// 첫번째 : 칼		// 0001
+	// 두번째 : 도끼		// 0010
+	// 세번째 : 창		// 0100
+	// 네번째 : 활		// 1000	
 	const unsigned char Sword = 1;	// 1 << 0;
 	const unsigned char Axe = 2;	// 1 << 1;
 	const unsigned char Spear = 4;	// 1 << 2;
@@ -227,34 +229,23 @@ void Test::Test_1220_Bitwise()
 	weaponData = Sword | Axe;
 
 	// 무기 종류별 비트마스크와 weaponData의 & 결과로 판단할 수 있다.
-	bool weaponAvailable = (weaponData & Sword) != 0;		// Sword를 사용할 수 있으면 true아니면 false
-	weaponAvailable = (weaponData & Sword) == Sword;		// 위와 같은 코드
+	bool weaponAvailiable = (weaponData & Sword) != 0;		// Sword를 사용할 수 있으면 true아니면 false
+	weaponAvailiable = (weaponData & Sword) == Sword;		// 위와 같은 코드
 
-	/*weaponAvailable = (weaponData & Bow) != Bow;
-	if (Sword && weaponData) {
-		cout << "sword use" << sw << endl;
-	};
-	if (Axe && weaponData) {
-		cout << "axe use" << ax << endl;
-	};
-	if (Spear && weaponData) {
-		cout << "spear use" << sp << endl;
-	};
-	if (Bow && weaponData) {
-		cout << "bow use" << bo << endl;
-	};
-	if(0 && weaponData){
-		cout << "no use" << endl;
-	};*/
+	weaponAvailiable = (weaponData & Bow) != 0;		// 활을 사용할 수 있는지 확인
+
+
 }
+
 void Test::Test_1220_ControlStatement()
 {
-	// 제어문(Control statement)
+	// 제어문(Control Statement)
 	int a = 10;
 
+	// 조건문
 	if (a > 5)
 	{
-		// 조건이 true일 때 실행
+		// 조건이 true일 때 실행		
 	}
 	else
 	{
@@ -301,9 +292,8 @@ void Test::Test_1220_ControlStatement()
 	switch (a)
 	{
 	case 1:
-		printf("1\n");
-		break;
 	case 2:
+		printf("1\n");
 		printf("2\n");
 		break;
 	case 3:
@@ -316,7 +306,7 @@ void Test::Test_1220_ControlStatement()
 
 	// 반복문(Loop)
 	int i = 0;
-	while (i < 11) // 조건을 확인하고 조건이 참이면 {} 안의 코드를 수행. 총 11번 실행
+	while (i < 11)	// 조건을 확인하고 조건이 참이면 {} 안의 코드를 수행. 총 11번 실행
 	{
 		i++;
 	}
@@ -335,61 +325,56 @@ void Test::Test_1220_ControlStatement()
 	do
 	{
 		i++;
-	} while (i < 11);	// 일단 {} 사이의 코드를 한 번 실행하고 조건을 확인한 후 조건이 참이면 다시 실행. 총 10번 실행
+	} while (i < 11);		// 일단 {} 사이의 코드를 한번 실행하고 조건을 확인한 후 조건이 참이면 다시 실행. 총 10번 실행
 
 	for (int j = 0; j < 10; j++)	// j<10 조건을 확인하고 조건이 참이면 {}사이 코드 실행. 총 10번 실행
 	{
-		if (j % 2 == 0) // 짝수는 처리하지 않고 스킵
-			continue;	// 이 이후의 코드는 실행하지 않고 loop의 시작점으로 돌아가기
+		if (j % 2 == 0)		// 짝수는 처리하지 않고 스킵
+			continue;		// 이 이후의 코드는 실행하지 않고 loop의 시작점으로 돌아가기
 
-		printf("%d is odd", j);	// 홀수는 홀수라고 출력하고 짝수는 아무것도 안함
+		printf("%d is odd.", j);	// 홀수는 홀수라고 출력하고 짝수는 아무것도 안함
 	}
 	
 }
 void Test::Test_1220_SlotMachine()
 {
+	std::srand(std::time(0));
+
 	// 슬롯머신
 	// 처음에 돈을 걸고
-	// 랜덤으로 숫자를 3개 뽑아서 셋다 같은 숫자가 나오면 2배로 돌려주기
+	// 랜덤으로 숫자를 3개 뽑아서 셋다 같은 숫자가 나오면 100배로 돌려주기
 	// 다시 처음으로
 
-	int money = 100000;	// 게임 시작 시 보유 금액
-	const int WinRate = 100; // 당첨 시 배율
-	while (true) // 게임을 재시작하기 위한 루프
+	// 내가 보유하고 있는 돈
+	int money = 100000;
+	const int WinRate = 100;
+
+	while (money > 0)
 	{
-		std::srand(std::time(0)); // 랜덤 숫자 생성을 위한 시드 설정
-	
-		// 현재 베팅한 돈
+		// 현재 배팅한 돈
 		int bet = 0;
-		
-		cout << "베팅 금액을 입력하세요(" << money << "원 보유 중): ";
+		printf("Bet your money(%d) : ", money);
 		cin >> bet;	// 입력 받고
+
 		if (bet > 0 && bet <= money)
 		{
-			// 베팅 금액이 0보다 크고 가지고 있는 돈보다 작거나 같을 때
-			cout << "슬롯머신을 시작합니다!" << endl;
-			int slot1 = std::rand() % 10;
-			int slot2 = std::rand() % 10;
-			int slot3 = std::rand() % 10;
-			
-			// 테스트용으로 7로 고정
-			// slot1 = slot2 = slot3 = 7;
+			// 배팅 금액이 0보다 크고 현재 보유한 금액보다는 작아야 한다.
+			money -= bet;					// 배팅금액 빼기
+			printf("Spin slot!\n");
+			int num1 = std::rand() % 10;	// 0 ~ 9 사이를 랜덤으로 결정
+			int num2 = std::rand() % 10;
+			int num3 = std::rand() % 10;
 
-			cout << "첫 번째 숫자: " << slot1 << endl;
-			cout << "두 번째 숫자: " << slot2 << endl;
-			cout << "세 번째 숫자: " << slot3 << endl;
+			// num1 = num2 = num3 = 7;
+			printf("Numbers : (%d) (%d) (%d)\n", num1, num2, num3);	// 랜덤 숫자 출력
 
-			money -= bet;	// 베팅한 만큼 돈을 뺀다.
-			
-			if (slot1 == slot2 && slot2 == slot3)
+			if (num1 == num2 && num2 == num3)	// 1,2,3이 같은지 확인
 			{
-				int win = bet * WinRate;
-				money += win;	// 당첨 금액을 추가한다
-				cout << "축하합니다! 당첨 금액: " << win << "원" << endl;
+				int prize = bet * WinRate;		// 상금 결정
+				printf("Congratulation! You WIN!\n");
+				printf("You got (%d)\n", prize);
+				money += prize;	// 상금을 내 돈에 추가
 			}
-			else
-			{
-				cout << "안타깝지만, 다시 도전해 보세요! 남은 금액: " << money << "원" << endl;
 		}
 	} else { cout << "베팅 금액이 잘못되었습니다. 다시 입력하세요." << endl; continue;
 	// 잘못된 금액 입력 시 재입력 받도록
@@ -536,9 +521,9 @@ void Test::Test_1220_Template()
 	float data4 = TemplateAdd<float>(10.5f, 2.6f);
 
 	// 이름 : Clamp
-	// 파라미터 : value, min, max
-	// 기능 : value가 min보다 작으면 min을 반환, max보다 크면 max를 반환, 아니면 value를 반환하는 함수
-	// 템플릿 함수로 구현해야 한다.
+	// 파라메터 : value, min, max
+	// 기능 : value가 min보다 적으면 min값, max보다 크면 max값, min~max 사이에 있으면 value를 리턴하는 함수
+	// 템플릿 함수이어야 한다.
 
 	//int data5 = Clamp<int>(10, 0, 100);	// 10
 	//int data6 = Clamp<int>(110, 0, 100);	// 10
