@@ -1,0 +1,8 @@
+﻿  DropBlock.cpp
+  GameManager.cpp
+D:\atentsgame\Tetrisgame\Tetrisgame\GameManager.cpp(72,11): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Main.cpp
+  Stage.cpp
+  Test.cpp
+  코드를 생성하고 있습니다...
+  Tetrisgame.vcxproj -> D:\atentsgame\Tetrisgame\x64\Debug\Tetrisgame.exe

@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <queue>
 using namespace std;
 
 const int WIDTH = 5;
@@ -8,7 +8,11 @@ const int HEIGHT = 5;
 enum Direction { UP = 1, DOWN, LEFT, RIGHT };
 enum Cell { EMPTY, WALL, GOAL, PLAYER };
 
-void printMaze(const vector<vector<Cell>>& maze, int playerX, int playerY) {
+struct Point {
+    int x, y;
+};
+
+void printMaze(const Cell maze[HEIGHT][WIDTH], int playerX, int playerY) {
     for (int y = 0; y < HEIGHT; ++y) {
         for (int x = 0; x < WIDTH; ++x) {
             if (x == playerX && y == playerY)
@@ -24,7 +28,7 @@ void printMaze(const vector<vector<Cell>>& maze, int playerX, int playerY) {
     }
 }
 
-bool movePlayer(int& playerX, int& playerY, Direction direction, const vector<vector<Cell>>& maze) {
+bool movePlayer(int& playerX, int& playerY, Direction direction, const Cell maze[HEIGHT][WIDTH]) {
     int newX = playerX;
     int newY = playerY;
     switch (direction) {
@@ -41,34 +45,73 @@ bool movePlayer(int& playerX, int& playerY, Direction direction, const vector<ve
     return true;
 }
 
-int main() {
-    vector<vector<Cell>> maze = {
-        { EMPTY, EMPTY, WALL,  EMPTY, GOAL  },
-        { WALL,  EMPTY, WALL,  EMPTY, WALL  },
-        { EMPTY, EMPTY, EMPTY, EMPTY, EMPTY },
-        { WALL,  WALL,  WALL,  WALL,  EMPTY },
-        { PLAYER,EMPTY, EMPTY, EMPTY, EMPTY }
-    };
+bool BFS(const Cell maze[HEIGHT][WIDTH], int startX, int startY, Point parent[HEIGHT][WIDTH]) {
+    queue<Point> q;
+    bool visited[HEIGHT][WIDTH] = { false };
 
-    int playerX = 0;
-    int playerY = 4;
+    int dx[] = { 0, 0, 1, -1 };
+    int dy[] = { 1, -1, 0, 0 };
 
-    while (maze[playerY][playerX] != GOAL) {
-        printMaze(maze, playerX, playerY);
-        cout << "이동 방향을 입력하세요 (상: 1, 하: 2, 좌: 3, 우: 4): ";
-        int input;
-        cin >> input;
+    q.push({ startX, startY });
+    visited[startY][startX] = true;
 
-        if (input < 1 || input > 4) {
-            cout << "잘못된 입력입니다. 다시 시도하세요." << endl;
-            continue;
-        }
+    while (!q.empty()) {
+        Point p = q.front();
+        q.pop();
 
-        if (!movePlayer(playerX, playerY, static_cast<Direction>(input), maze)) {
-            cout << "이동할 수 없습니다. 다시 시도하세요." << endl;
+        for (int i = 0; i < 4; ++i) {
+            int nx = p.x + dx[i];
+            int ny = p.y + dy[i];
+
+            if (nx >= 0 && ny >= 0 && nx < WIDTH && ny < HEIGHT && !visited[ny][nx] && maze[ny][nx] != WALL) {
+                parent[ny][nx] = p;  // 부모 노드 설정
+                visited[ny][nx] = true;
+                q.push({ nx, ny });
+
+                if (maze[ny][nx] == GOAL) {
+                    return true;
+                }
+            }
         }
     }
 
-    cout << "축하합니다! 골인지점에 도착했습니다!" << endl;
-    return 0;
+    return false;
 }
+
+void tracePath(Point parent[HEIGHT][WIDTH], int startX, int startY, int goalX, int goalY) {
+    cout << "경로: ";
+    for (Point at = { goalX, goalY }; at.x != startX || at.y != startY; at = parent[at.y][at.x]) {
+        cout << "(" << at.x << ", " << at.y << ") <- ";
+    }
+    cout << "(" << startX << ", " << startY << ")" << endl;
+}
+
+//int main() {
+//    Cell maze[HEIGHT][WIDTH] = {
+//        { EMPTY, EMPTY, WALL,  EMPTY, GOAL  },
+//        { WALL,  EMPTY, WALL,  EMPTY, WALL  },
+//        { EMPTY, EMPTY, EMPTY, EMPTY, EMPTY },
+//        { WALL,  WALL,  WALL,  WALL,  EMPTY },
+//        { PLAYER,EMPTY, EMPTY, EMPTY, EMPTY }
+//    };
+//
+//    int playerX = 0;
+//    int playerY = 4;
+//
+//    Point parent[HEIGHT][WIDTH];
+//    for (int i = 0; i < HEIGHT; ++i) {
+//        for (int j = 0; j < WIDTH; ++j) {
+//            parent[i][j] = { -1, -1 };
+//        }
+//    }
+//
+//    if (BFS(maze, playerX, playerY, parent)) {
+//        cout << "경로를 찾았습니다!" << endl;
+//        tracePath(parent, playerX, playerY, 4, 0); // (4, 0)은 목표 지점의 좌표
+//    }
+//    else {
+//        cout << "경로를 찾지 못했습니다." << endl;
+//    }
+//
+//    return 0;
+//}

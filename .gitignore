@@ -1,0 +1,16 @@
+﻿################################################################################
+# 이 .gitignore 파일은 Microsoft(R) Visual Studio에서 자동으로 만들어졌습니다.
+################################################################################
+
+/.vs/atentsgame/CopilotIndices/17.12.38.29086
+/.vs/atentsgame/FileContentIndex
+/.vs/atentsgame/v17/ipch/AutoPCH
+/.vs
+/Test/.vs/ProjectEvaluation
+/Test/.vs/Test/CopilotIndices/17.12.38.29086
+/Test/.vs/Test/DesignTimeBuild
+/Test/.vs/Test/FileContentIndex
+/Test/.vs/Test/v17
+/Test
+/Tetrisgame/.vs/Tetrisgame
+/CppProperties.json
